@@ -1,0 +1,61 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Duyuru Güncelleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Duyuru Güncelleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Duyurularınızı Güncelleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+ Duyuru Güncelleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/yonetici_duyuru_guncelle" method="post">
+  <div class="form-row">
+
+    <div class="form-group col-md-8">
+      <label>Duyuru Başlığı</label>
+        <input type="text" class="form-control" id="inputPassword4" placeholder="Duyuru Başlığı" value={{ duyurular.duyuru_basligi }} name="duyuru_basligi">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label >Duyuru Tarihi(Yıl-Ay-Gün)</label>
+      <input type="text" class="form-control" id="inputPassword4"  name="duyuru_tarihi" value={{ duyurular.duyuru_tarihi }} >
+    </div>
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Duyuru Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Duyuru Açıklaması" name="duyuru_aciklama">{{ duyurular.duyuru_aciklama }}</textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+        <input type="hidden" value={{ duyurular.duyuru_id }} name="duyuru_id">
+      <button type="submit" class="btn btn-primary" >Duyuru Güncelle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

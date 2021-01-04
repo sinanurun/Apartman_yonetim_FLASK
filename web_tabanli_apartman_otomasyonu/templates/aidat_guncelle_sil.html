@@ -1,0 +1,48 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Aidat Güncelleme ve Silme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Aidat Güncelleme ve Silme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Apartmanınıza Kayıtlı Bulunan Üyelerin Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    {{ mesaj }} Apartmana Kayıtlı Bulunan Toplam Aidat Sayısı : {{ aidatlar.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Üye Adı Soyadı</th>
+      <th scope="col">Aidat Tutarı</th>
+      <th scope="col">Aidat Tarihi</th>
+      <th scope="col">Aidat Güncelle</th>
+      <th scope="col">Aidat Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for aidat in aidatlar %}
+    <tr>
+      <th scope="row">{{ aidat.aidat_id}}</th>
+      <td>{{ aidat.aidatuye.uye_adi_soyadi }}</td>
+      <td>{{ aidat.aidat_tutari}}</td>
+      <th>{{ aidat.aidat_tarihi}}</th>
+      <th><a href= "/aidat_guncelle/{{aidat.aidat_id }}" >Aidat Güncelle</a></th>
+      <th><a href="/aidat_guncelle_sil/{{aidat.aidat_id }}" >Aidat Sil</a></th>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+

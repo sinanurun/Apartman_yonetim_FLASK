@@ -1,0 +1,64 @@
+<html><head>
+
+
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <style id="compiled-css" type="text/css">
+
+  </style>
+
+
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/javascript">//<![CDATA[
+
+    window.onload=function(){
+
+$('#datepicker').datepicker({
+	format: 'dd-mm-yyyy',
+  todayHighlight: true
+});
+
+
+    }
+
+  //]]></script>
+
+</head>
+<body>
+    <p>
+Date Picker
+</p>
+<div id="datepicker" class="input-group date">
+  <input type="text" class="form-control" name="doj" readonly="">
+  <div class="input-group-addon">
+    <span class="glyphicon glyphicon-th"></span>
+  </div>
+</div>
+
+
+
+
+
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: "2w2h3rn8"
+      }], "*")
+    }
+
+    // always overwrite window.name, in case users try to set it manually
+    window.name = "result"
+  </script>
+
+
+</body></html>

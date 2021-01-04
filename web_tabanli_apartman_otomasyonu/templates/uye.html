@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <title>{% block sayfa_baslik %}
+Üye Sayfası - Ana Sayfa
+{% endblock %}</title>
+</head>
+<body class="text-center">
+<div class="alert alert-success" role="alert">
+    {% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonuna Hoş Geldiniz Sayın {{ uye.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+{% endblock %}
+
+</div>
+
+<div class="container">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/uye_sayfasi">Ana Sayfa <span class="sr-only">(current)</span></a>
+      </li>
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Gelir Listeleri
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/aidat_listesi">Aidat Listeleri</a>
+          </div>
+      </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/giderler_listesi">Giderler Listesi</a>
+      </li>
+        <li class="nav-item active">
+        <a class="nav-link" href="/uye_aidat_sayfasi">Aidatlarım</a>
+      </li>
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Duyuru ve İstekler
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="/uye_duyuru_listesi">Duyuru Listesi</a>
+              <a class="dropdown-item" href="/uye_istek_listesi">İstek Listesi</a>
+              <a class="dropdown-item" href="/uye_istek_ekle">İstek Ekle</a>
+          </div>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/cikis">Çıkış<span class="sr-only"></span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+<div class="container">
+{% block icerik %}
+
+
+    <table class="table table-sm table-primary">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bilgi</th>
+      <th scope="col">Toplam Sayısı</th>
+      <th scope="col">Toplam</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Aidat Bilgileri</td>
+      <td>{{ apartman_bilgileri['aidat_sayisi'] }}</td>
+      <td>{{ apartman_bilgileri['aidat_toplami'] }}</td>
+    </tr>
+      <tr>
+      <th scope="row">3</th>
+      <td>Gider Bilgileri</td>
+      <td>{{ apartman_bilgileri['gider_sayisi'] }}</td>
+      <td>{{ apartman_bilgileri['gider_toplami'] }}</td>
+    </tr>
+        <tr class="table-danger">
+      <th scope="row">4</th>
+      <td>Gelir - Gider Sonucu</td>
+            <td> </td>
+      <td colspan=>{{ apartman_bilgileri['aidat_toplami']  - apartman_bilgileri['gider_toplami'] }}</td>
+    </tr>
+     </tbody>
+</table>
+
+<br>
+       <table class="table table-sm table-warning">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bilgi</th>
+      <th scope="col">Toplam Sayısı</th>
+    </tr>
+  </thead>
+  <tbody>
+     <tr>
+        <th scope="row">1</th>
+      <td>Aktif Üye Sayısı </td>
+      <td>{{ apartman_bilgileri['auye_sayisi'] }}</td>
+
+    </tr>
+      <tr>
+        <th scope="row">2</th>
+      <td>Pasif Üye Sayısı </td>
+      <td>{{ apartman_bilgileri['puye_sayisi'] }}</td>
+
+    </tr>
+      <tr class="table-danger">
+        <th scope="row">3</th>
+      <td>Toplam Üye Sayısı </td>
+      <td>{{ apartman_bilgileri['tuye_sayisi'] }}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+{% endblock %}
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ </body>
+</html>

@@ -1,0 +1,79 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Aidat Ekleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Aidat Ekleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Yeni Aidat Sisteme Ekleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+ Aidat Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/aidat_ekle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Üye Adı Soyadı</label>
+            <select id="inputState" class="form-control" name="aidat_uye_id">
+                {% for uye in uye_listesi %}
+        <option value={{ uye.uye_id }}>{{ uye.uye_tc}} {{uye.uye_adi_soyadi }}</option>
+                {% endfor %}
+      </select>
+{#<br>#}
+{##}
+{#                {% for a in range(1,13) %}#}
+{#        <input type="checkbox" name="aylar" value={{ a }}>{{ a}}</input>#}
+{#                {% endfor %}#}
+
+
+    </div>
+    <div class="form-group col-md-4">
+      <label >Aidat Tutarı</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Aidat Tutarı" name="aidat_tutari">
+    </div>
+          <div class="form-group col-md-4">
+      <label >Aidat Tarihi(Gün/Ay/Yıl)</label>
+
+      <input type="text" class="form-control" id="inputPassword4"  name="aidat_tarihi" value={{ tarih }} >
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Aidat Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Aidat Açıklaması" name="aidat_aciklama"></textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+      <button type="submit" class="btn btn-primary" >Aidat Ekle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

@@ -1,0 +1,50 @@
+{% extends "uye.html" %}
+
+{% block sayfa_baslik %}
+Üye Sayfası - Gider Listeleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Gider Listeleme Sayfasındasınız {{ uye.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Sisteme Kayıtlı Bulunan Giderlerin Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    Sisteme Kayıtlı bulunan Toplam Gider Sayısı : {{ giderler.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Gider İşleyen</th>
+      <th scope="col">Gider Tutarı</th>
+      <th scope="col">Gider Tarihi</th>
+        <th scope="col">Gider Açıklama</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for gider in giderler %}
+    <tr>
+      <th scope="row">{{ gider.gider_id}}</th>
+      <td>{{ gider.gideryonetici.uye_adi_soyadi }}</td>
+      <td>{{ gider.gider_tutari}}</td>
+      <th>{{ gider.gider_tarihi}}</th>
+    <th>{{ gider.gider_aciklama}}</th>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+

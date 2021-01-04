@@ -1,0 +1,43 @@
+{% extends "uye.html" %}
+
+{% block sayfa_baslik %}
+Üye Sayfası - İstek Görüntüleme Sayfasındasınız
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu İstek Görüntüleme Sayfasındasınız {{ uye.uye_adi_soyadi.upper() }}<br>
+
+{% endblock %}
+
+
+{% block icerik %}
+    
+
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">İstek Başlığı</th>
+      <th scope="col">İsteği Yapan</th>
+      <th scope="col">İstek Açıklaması</th>
+        <th scope="col">İstek Tarihi</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <th scope="row">{{ istek.sikayet_id}}</th>
+      <td>{{ istek.sikayet_basligi }}</td>
+
+              <td>{{ istek.sikayetuye.uye_adi_soyadi}}</td>
+        <td>{{ istek.sikayet_aciklama }}</td>
+      <th>{{ istek.sikayet_tarihi}}</th>
+
+    </tr>
+
+    </table>
+
+{% endblock %}
+
+

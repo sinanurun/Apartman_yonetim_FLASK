@@ -1,0 +1,69 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Aidat Ekleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Aidat Güncelleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Aidatlarınızı Güncelleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+ Aidat Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/aidat_guncelle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Üye Adı Soyadı</label><br>
+    <label>{{ aidatlar.aidatuye.uye_adi_soyadi }}</label>
+    </div>
+    <div class="form-group col-md-4">
+      <label >Aidat Tutarı</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Aidat Tutarı" name="aidat_tutari" value={{ aidatlar.aidat_tutari }}>
+    </div>
+          <div class="form-group col-md-4">
+      <label >Aidat Tarihi(Gün/Ay/Yıl)</label>
+
+      <input type="text" class="form-control" id="inputPassword4"  name="aidat_tarihi" value={{ aidatlar.aidat_tarihi }} >
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Aidat Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Aidat Açıklaması" name="aidat_aciklama">{{ aidatlar.aidat_aciklama }}</textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+        <input type="hidden" value={{ aidatlar.aidat_id }} name="aidat_id">
+      <button type="submit" class="btn btn-primary" >Aidat Güncelle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

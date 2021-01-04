@@ -1,0 +1,46 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Duyuru Listesi
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Yönetici Duyuru Listeleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+
+{% endblock %}
+
+
+{% block icerik %}
+    
+
+    <div class="alert alert-success" role="alert">
+    Sistemde Kayıtlı Bulunan Toplam Duyuru Sayısı : {{ duyurular.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Duyuru Başlığı</th>
+      <th scope="col">Duyuruyu Yapan</th>
+      <th scope="col">Duyuru Tarihi</th>
+        <th scope="col">Duyuru Bağlantısı</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for duyuru in duyurular %}
+    <tr>
+      <th scope="row">{{ duyuru.duyuru_id}}</th>
+      <td>{{ duyuru.duyuru_basligi }}</td>
+
+              <td>{{ duyuru.duyuruyonetici.uye_adi_soyadi}}</td>
+      <th>{{ duyuru.duyuru_tarihi}}</th>
+        <th><a  href="/yonetici_duyuru_goruntuleme/{{ duyuru.duyuru_id}}">Duyuru Görüntüle</a></th>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
+
+

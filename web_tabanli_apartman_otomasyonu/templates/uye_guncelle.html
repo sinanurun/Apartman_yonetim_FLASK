@@ -1,0 +1,84 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Gider Ekleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Koç Apartmanı Yönetim Sistemi Otomasyonu Üye Güncelleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Seçili Üyeyi Güncelleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+Gider Güncelleme Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/uye_guncelle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Üye Adı Soyadı</label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="Üye Adı Soyadı" name="uye_adi_soyadi" value={{ uyeler.uye_adi_soyadi }}>
+    </div>
+    <div class="form-group col-md-4">
+      <label >Üye TC No</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Üye TC No" name="uye_tc" value={{ uyeler.uye_tc }}>
+    </div>
+          <div class="form-group col-md-4">
+      <label >Üye Şifre</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Şifre" name="uye_sifre" value={{ uyeler.uye_sifre}}>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label >Telefon</label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="Telefon" name="uye_tel" value={{ uyeler.uye_tel}}>
+    </div>
+    <div class="form-group col-md-4">
+      <label >Adres</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Adres" name="uye_adres"  value={{ uyeler.uye_adres}}>
+    </div>
+         <div class="form-group col-md-4">
+      <label >E mail</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="uye_email" name="uye_email" value={{ uyeler.uye_email }}>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputState">Üye Durum</label>
+      <select id="inputState" class="form-control" name="uye_durum">
+        <option selected value="0">Aktif</option>
+        <option value="1">Pasif</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputState">Apartmandaki Pozisyonu</label>
+      <select id="inputState" class="form-control" name="uye_yonetim">
+        <option selected value="2">Üye</option>
+        <option value="1">Yönetici</option>
+          <option value="0">Başkan</option>
+      </select>
+    </div>
+    <div class="form-group col-md-4" >
+  <br>
+        <input type="hidden" name="uye_id" value={{ uyeler.uye_id }}>
+      <button type="submit" class="btn btn-primary" >Üye Güncelle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

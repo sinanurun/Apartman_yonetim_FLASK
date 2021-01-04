@@ -1,0 +1,50 @@
+{% extends "uye.html" %}
+
+{% block sayfa_baslik %}
+Üye Sayfası - Aidat Listeleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartmanı Yönetim Sistemi Otomasyonu Aidat Listeleme Sayfasındasınız {{ uye.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Sistemde Kayıtlı Bulunan Aidatlarınızın Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    Apartmana Kayıtlı bulunan Toplam Aidat Sayısı : {{ aidatlar.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Üye Adı Soyadı</th>
+      <th scope="col">Aidat Tutarı</th>
+          <th scope="col">Aidat Açıklaması</th>
+      <th scope="col">Aidat Tarihi</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for aidat in aidatlar %}
+    <tr>
+      <th scope="row">{{ aidat.aidat_id}}</th>
+      <td>{{ aidat.aidatuye.uye_adi_soyadi }}</td>
+      <td>{{ aidat.aidat_tutari}}</td>
+        <td>{{ aidat.aidat_aciklamasi}}</td>
+      <th>{{ aidat.aidat_tarihi}}</th>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+

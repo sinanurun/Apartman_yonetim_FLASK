@@ -1,0 +1,64 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Üye Güncelleme ve Silme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+Dağ Apartmanı Yönetim Sistemi Otomasyonu Üye Güncelleme ve Silme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Sistemde Kayıtlı Bulunan Üyelerin Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    Sistemde Kayıtlı bulunan Toplam Üye Sayısı : {{ uyeler.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Üye Adı Soyadı</th>
+      <th scope="col">Üye Tel</th>
+        <th scope="col">Üye Durum</th>
+      <th scope="col">Üye Pozisyon</th>
+      <th scope="col">Üye Güncelle</th>
+      <th scope="col">Üye Sil</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for uye in uyeler %}
+    <tr>
+      <th scope="row">{{uye.uye_id}}</th>
+      <td>{{ uye.uye_adi_soyadi }}</td>
+      <td>{{ uye.uye_tel}}</td>
+              {% if uye.uye_durum == 0 %}
+      <td>Aktif</td>
+        {% else %}
+        <td>Pasif</td>
+        {% endif %}
+
+            {% if uye.uye_yonetim == 0 %}
+      <td>Başkan</td>
+                            {% elif uye.uye_yonetim == 1 %}
+      <td>Yönetici</td>
+        {% else %}
+        <td>Üye</td>
+        {% endif %}
+      <th><a href= "/uye_guncelle/{{uye.uye_id}}" >Üye Güncelle</a></th>
+      <th><a href="/uye_sil/{{uye.uye_id}}" >Üye Sil</a></th>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+

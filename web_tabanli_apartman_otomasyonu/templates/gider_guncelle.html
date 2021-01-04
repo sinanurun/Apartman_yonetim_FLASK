@@ -1,0 +1,70 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Gider Ekleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Koç Apartman Yönetim Sistemi Gider Güncelleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Seçili Gideri Güncelleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+Gider Güncelleme Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/gider_guncelle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Gider İşleyen Adı Soyadı</label><br>
+          <input type="text" class="form-control" id="inputPassword4" placeholder="Gider Yapan" name="gider_yapan" value={{ giderler.gideryonetici.uye_adi_soyadi}}>
+
+    </div>
+    <div class="form-group col-md-4">
+      <label >Gider Tutarı</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Gider Tutarı" name="gider_tutari" value={{giderler.gider_tutari }}>
+    </div>
+          <div class="form-group col-md-4">
+      <label >Gider Tarihi</label>
+
+      <input type="text" class="form-control" id="inputPassword4"  name="gider_tarihi" value={{giderler.gider_tarihi }} >
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Gider Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Bağış Açıklaması" name="gider_aciklama">{{ giderler.gider_aciklama }}</textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+        <input type="hidden" value={{ giderler.gider_id }} name="gider_id">
+      <button type="submit" class="btn btn-primary" >Gider Güncelle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

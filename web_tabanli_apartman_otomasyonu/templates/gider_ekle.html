@@ -1,0 +1,68 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Gider Ekleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dağ Apartman Yönetim Sistemi Gider Ekleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Yeni Gider Sisteme Ekleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+ Gider Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="gider_ekle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Gider İşleyen</label>
+        <label class="form-control">{{ yonetici.uye_adi_soyadi }}</label>
+    </div>
+    <div class="form-group col-md-4">
+      <label >Gider Tutarı</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Gider Tutarı" name="gider_tutari">
+    </div>
+          <div class="form-group col-md-4">
+      <label >Gider Tarihi(Gün/Ay/Yıl)</label>
+
+      <input type="text" class="form-control" id="inputPassword4"  name="gider_tarihi" value={{ tarih }} >
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Bağış Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Gider Açıklaması" name="gider_aciklama"></textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+      <button type="submit" class="btn btn-primary" >Gider Ekle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+
